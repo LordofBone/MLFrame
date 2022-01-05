@@ -15,17 +15,25 @@ logging.basicConfig(level=log_level)
 def refresh_image(pin):
     logger.info("Refresh button pressed")
     if not TimerControl.running_display:
+        TimerControl.running_display = True
         logger.info("Currently not generating anything, running a generation")
         ml_image = BuildDisplay(show_image=False)
         ml_image.run_neural_transfer()
         ml_image.display_to_ink()
         logger.info("Generation complete and displayed")
+        TimerControl.running_display = False
 
 
-@nav.on(nav.B)
-def nothing(pin):
-    # todo: give this a function
-    logger.info("I currently have no function; please code me one")
+@nav.on(nav.RANDOMPIC)
+def random_pic(pin):
+    logger.info("Random picture button pressed")
+    if not TimerControl.running_display:
+        TimerControl.running_display = True
+        logger.info("Currently not generating anything, displaying a random previously generated image")
+        ml_image = BuildDisplay(show_image=False)
+        ml_image.display_random_to_ink()
+        logger.info("Random image displayed")
+        TimerControl.running_display = False
 
 
 @nav.on(nav.TIMER)

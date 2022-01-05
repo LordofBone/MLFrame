@@ -18,7 +18,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 REFRESH = 5
-B = 6
+RANDOMPIC = 6
 TIMER = 16
 SHUTDOWN = 24
 
@@ -26,7 +26,7 @@ BOUNCE = 300
 
 repeat_status = {
     REFRESH: False,
-    B: False,
+    RANDOMPIC: False,
     TIMER: False,
     SHUTDOWN: False,
 }
@@ -78,7 +78,7 @@ def repeat(button, handler, delay=0.1, ramp=1.0):
 
 # Buttons connect to ground when pressed, so we should set them up
 # with a "PULL UP", which weakly pulls the input signal to 3.3V.
-up = GPIO.setup(REFRESH, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-down = GPIO.setup(B, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-left = GPIO.setup(TIMER, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-right = GPIO.setup(SHUTDOWN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(REFRESH, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(RANDOMPIC, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(TIMER, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(SHUTDOWN, GPIO.IN, pull_up_down=GPIO.PUD_UP)

@@ -17,3 +17,6 @@ class BuildDisplay:
 
     def display_to_ink(self):
         display_inky(self.dt_string)
+
+    def display_random_to_ink(self):
+        display_inky(file_time=self.dt_string, random_existing=True)
