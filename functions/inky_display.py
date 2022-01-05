@@ -16,6 +16,7 @@ except ModuleNotFoundError:
 saturation = 0.5
 
 
+# the random parameter determines whether a random image is chosen from outputs or the filename is used
 def display_inky(file_time, random_existing=False):
     if random_existing:
         image_pre = Image.open(FileHandlerInstance.get_random_file())

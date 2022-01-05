@@ -7,6 +7,11 @@ from functions.build_and_display import BuildDisplay
 from functions.timer_control import TimerControl
 from config.parameters import log_level
 
+"""
+Main program loop and button functions
+"""
+
+# set to logging level as configured in parameters.py
 logger = logging.getLogger("frame-logger")
 logging.basicConfig(level=log_level)
 
@@ -51,5 +56,6 @@ def shutdown_pi(pin):
     sleep(0.2)
 
 
+# this keeps the program running
 while 1:
     sleep(0.05)

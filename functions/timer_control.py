@@ -6,6 +6,9 @@ from functions.build_and_display import BuildDisplay
 from config.parameters import timer, timer_on
 
 
+# the timer class is to maintain whether the timer is active and to control flipping the timer_on boolean,
+# it also has a boolean that is set to true when generation is in progress, to prevent multiple generations of a
+# transfer happening at once
 class Timer:
     def __init__(self):
         self.timer_on = timer_on
@@ -18,6 +21,7 @@ class Timer:
 TimerControl = Timer()
 
 
+# the loop that runs the automatic timed image generation
 def timer_image():
     while True:
         if TimerControl.timer_on:
@@ -30,5 +34,6 @@ def timer_image():
                 time.sleep(timer)
 
 
+# thread out the function so that it can run alongside everything else
 t = threading.Thread(target=timer_image)
 t.start()

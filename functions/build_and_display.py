@@ -4,6 +4,8 @@ from functions.inky_display import display_inky
 from functions.neural_transfer import perform_neural_transfer
 
 
+# this is all within a class so that the datetime and show image paramters can be kept the same within image
+# generation runs
 class BuildDisplay:
     def __init__(self, show_image):
         self.show_image = show_image

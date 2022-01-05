@@ -3,6 +3,8 @@ import random
 from pathlib import Path
 
 
+# this is as a class to ensure that the base image path can always be accessed and added to to find images from the
+# sub-folders
 class FileHandler:
     def __init__(self):
         # folders under images are: input, style, output

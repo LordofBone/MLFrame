@@ -11,6 +11,10 @@ from PIL import Image
 
 from functions.file_loader import FileHandlerInstance
 
+"""
+Thanks to: https://pytorch.org/tutorials/advanced/neural_style_tutorial.html
+"""
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # desired size of the output image
@@ -263,5 +267,7 @@ def perform_neural_transfer(file_time, show_image=False):
 
     plt.ioff()
 
+    # this is to ensure that the image window is only kept open after generation if this parameter is true
+    # todo: on raspberry pi the window seems to stay open but without an image, need to find a way to close this
     if show_image:
         plt.show()
