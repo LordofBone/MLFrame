@@ -24,6 +24,14 @@ __curl https://get.pimoroni.com/inky | bash__
 
 And follow the instructions.
 
+Then the main.py script needs to be set to run on boot:
+https://www.raspberrypi-spy.co.uk/2015/02/how-to-autorun-a-python-script-on-raspberry-pi-boot/
+
+And at the bottom of the profile script:
+__python(3) /home/pi/MLFrame/main.py__
+
+Save and reboot!
+
 It should now hopefully be ready to go.
 
 ### Running
