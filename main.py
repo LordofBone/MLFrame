@@ -5,8 +5,10 @@ from time import sleep
 import functions.button_control as nav
 from functions.build_and_display import BuildDisplay
 from functions.timer_control import TimerControl
+from config.parameters import log_level
 
-logger = logging.getLogger("bot-logger")
+logger = logging.getLogger("frame-logger")
+logging.basicConfig(level=log_level)
 
 
 @nav.on(nav.REFRESH)

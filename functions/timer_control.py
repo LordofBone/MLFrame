@@ -3,12 +3,12 @@ import time
 
 from functions.build_and_display import BuildDisplay
 
-from config.parameters import timer
+from config.parameters import timer, timer_on
 
 
 class Timer:
     def __init__(self):
-        self.timer_on = True
+        self.timer_on = timer_on
         self.running_display = False
 
     def timer_flip(self):

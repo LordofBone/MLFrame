@@ -265,5 +265,3 @@ def perform_neural_transfer(file_time, show_image=False):
 
     if show_image:
         plt.show()
-    else:
-        plt.ioff()
