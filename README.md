@@ -1,3 +1,11 @@
+### What this is
+
+You can read about what this project is here: https://www.hackster.io/314reactor/ml-art-frame-382a68
+
+But as a summary:
+It is code for an art frame that generates neural style transfer artwork and displays it to a 7 colour ink display on a 
+Raspberry Pi.
+
 ### Setup
 
 ###### Pre-requisites
