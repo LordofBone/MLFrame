@@ -15,6 +15,10 @@ __sudo ./install.sh__
 
 This will download the python3.7 pytorch wheels and build them, then run requirements.txt through pip.
 
+Of course, you don't have to run this if you don't want - you can follow the instructions here: 
+https://medium.com/analytics-vidhya/quick-setup-instructions-for-installing-pytorch-and-fastai-on-raspberry-pi-4-5ffbe45e0ae3  
+to install/build PyTorch yourself and run the above pip requirements install separately.
+
 On Raspberry Pi this is meant to run with the inky 7 colour HAT:
 https://shop.pimoroni.com/products/inky-impression-4
 
@@ -62,7 +66,7 @@ The buttons should be facing the left side of the frame.
 
 The top button will refresh and generate a new image - as long as a generation is not currently in progress.
 
-The second button down currently has no function.
+The second button will select a random image from previously generated images and display it.
 
 The third button down will de-activate the timer so the current image will stay.
 
