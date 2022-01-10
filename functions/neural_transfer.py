@@ -1,5 +1,7 @@
 from __future__ import print_function
 
+import logging
+
 import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
@@ -10,6 +12,8 @@ import torchvision.transforms as transforms
 from PIL import Image
 
 from functions.file_loader import FileHandlerInstance
+
+logger = logging.getLogger("neural-transfer-logger")
 
 """
 Thanks to: https://pytorch.org/tutorials/advanced/neural_style_tutorial.html
@@ -241,11 +245,20 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
 
 
 def perform_neural_transfer(file_time, show_image=False):
-    style_img = image_loader(FileHandlerInstance.get_random_file("style"))
-    content_img = image_loader(FileHandlerInstance.get_random_file("input"))
+    while True:
+        style_random_file = FileHandlerInstance.get_random_file("style")
+        content_random_file = FileHandlerInstance.get_random_file("input")
 
-    assert style_img.size() == content_img.size(), \
-        "we need to import style and content images of the same size"
+        style_img = image_loader(style_random_file)
+        content_img = image_loader(content_random_file)
+
+        try:
+            assert style_img.size() == content_img.size()
+            break
+        except AssertionError:
+            logger.info(f"Content image: {content_random_file} is size: {content_img.size()} which is not the same "
+                        f"size as style image: {style_random_file} size: {style_img.size()}, finding another random "
+                        f"image")
 
     plt.ion()
 
