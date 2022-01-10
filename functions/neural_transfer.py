@@ -2,6 +2,8 @@ from __future__ import print_function
 
 import logging
 
+from config.parameters import max_random_picture_attempts
+
 import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
@@ -245,6 +247,8 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
 
 
 def perform_neural_transfer(file_time, show_image=False):
+    image_get_attempts = 0
+
     while True:
         style_random_file = FileHandlerInstance.get_random_file("style")
         content_random_file = FileHandlerInstance.get_random_file("input")
@@ -259,6 +263,11 @@ def perform_neural_transfer(file_time, show_image=False):
             logger.info(f"Content image: {content_random_file} is size: {content_img.size()} which is not the same "
                         f"size as style image: {style_random_file} size: {style_img.size()}, finding another random "
                         f"image")
+
+        image_get_attempts += 1
+
+        if image_get_attempts == max_random_picture_attempts:
+            raise Exception("Too many attempts to find pictures, please check your content and style images.")
 
     plt.ion()
 
