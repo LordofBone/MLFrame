@@ -7,7 +7,7 @@ Simply runs a test of the ML style transfer and displays the output
 
 if __name__ == "__main__":
     logger = logging.getLogger("frame-logger")
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level='DEBUG')
     logger.info("Beginning test")
     test_run = BuildDisplay(show_image=True)
     test_run.run_neural_transfer()

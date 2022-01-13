@@ -1,6 +1,4 @@
-import logging
-
-log_level = logging.INFO
+log_level = 'INFO'
 
 timer_on = True
 timer = 1200
