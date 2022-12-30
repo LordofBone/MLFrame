@@ -32,6 +32,11 @@ loader = transforms.Compose([
 
 
 def image_loader(image_name):
+    """
+    Loads an image from the file system and returns it as a tensor
+    :param image_name:
+    :return:
+    """
     image_pre = Image.open(image_name)
     image = image_pre.resize((600, 448), Image.ANTIALIAS)
     # fake batch dimension required to fit network's input dimensions
@@ -43,6 +48,12 @@ unloader = transforms.ToPILImage()  # reconvert into PIL image
 
 
 def imshow(tensor, title=None):
+    """
+    Shows an image from a tensor
+    :param tensor:
+    :param title:
+    :return:
+    """
     image = tensor.cpu().clone()  # we clone the tensor to not do changes on it
     image = image.squeeze(0)  # remove the fake batch dimension
     image = unloader(image)
@@ -71,6 +82,11 @@ class ContentLoss(nn.Module):
 
 
 def gram_matrix(input):
+    """
+    Calculates the gram matrix of a given tensor
+    :param input:
+    :return:
+    """
     a, b, c, d = input.size()  # a=batch size(=1)
     # b=number of feature maps
     # (c,d)=dimensions of a f. map (N=c*d)
@@ -91,6 +107,11 @@ class StyleLoss(nn.Module):
         self.target = gram_matrix(target_feature).detach()
 
     def forward(self, input):
+        """
+        Calculates the style loss
+        :param input:
+        :return:
+        """
         G = gram_matrix(input)
         self.loss = F.mse_loss(G, self.target)
         return input
@@ -108,7 +129,11 @@ class Normalization(nn.Module):
         self.std = torch.tensor(std).view(-1, 1, 1)
 
     def forward(self, img):
-        # normalize img
+        """
+        Normalizes an image
+        :param img:
+        :return:
+        """
         return (img - self.mean) / self.std
 
 
@@ -121,6 +146,18 @@ def get_style_model_and_losses(cnn, normalization_mean, normalization_std,
                                style_img, content_img,
                                content_layers=content_layers_default,
                                style_layers=style_layers_default):
+    """
+    Creates a model and returns the style and content losses
+    :param cnn:
+    :param normalization_mean:
+    :param normalization_std:
+    :param style_img:
+    :param content_img:
+    :param content_layers:
+    :param style_layers:
+    :return:
+    """
+
     # normalization module
     normalization = Normalization(normalization_mean, normalization_std).to(device)
 
@@ -182,6 +219,12 @@ def get_style_model_and_losses(cnn, normalization_mean, normalization_std,
 
 
 def get_input_optimizer(input_img):
+    """
+    Returns the optimizer
+    :param input_img:
+    :return:
+    """
+
     # this line to show that input is a parameter that requires a gradient
     optimizer = optim.LBFGS([input_img])
     return optimizer
@@ -190,7 +233,9 @@ def get_input_optimizer(input_img):
 def run_style_transfer(cnn, normalization_mean, normalization_std,
                        content_img, style_img, input_img, num_steps=300,
                        style_weight=1000000, content_weight=1):
-    """Run the style transfer."""
+    """
+    Run the style transfer.
+    """
     print('Building the style transfer model..')
     model, style_losses, content_losses = get_style_model_and_losses(cnn,
                                                                      normalization_mean, normalization_std, style_img,
@@ -247,6 +292,12 @@ def run_style_transfer(cnn, normalization_mean, normalization_std,
 
 
 def perform_neural_transfer(file_time, show_image=False):
+    """
+    Performs the neural transfer
+    :param file_time:
+    :param show_image:
+    :return:
+    """
     image_get_attempts = 0
 
     while True:

@@ -15,6 +15,10 @@ class Timer:
         self.running_display = False
 
     def timer_flip(self):
+        """
+        This function flips the timer_on boolean
+        :return:
+        """
         self.timer_on = not self.timer_on
 
 
@@ -23,6 +27,10 @@ TimerControl = Timer()
 
 # the loop that runs the automatic timed image generation
 def timer_image():
+    """
+    This function runs the timer loop
+    :return:
+    """
     while True:
         if TimerControl.timer_on:
             if not TimerControl.running_display:

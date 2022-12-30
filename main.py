@@ -18,6 +18,11 @@ logging.basicConfig(level=log_level)
 
 @nav.on(nav.REFRESH)
 def refresh_image(pin):
+    """
+    This function refreshes the image
+    :param pin:
+    :return:
+    """
     logger.info("Refresh button pressed")
     if not TimerControl.running_display:
         TimerControl.running_display = True
@@ -31,6 +36,11 @@ def refresh_image(pin):
 
 @nav.on(nav.RANDOMPIC)
 def random_pic(pin):
+    """
+    This function displays a random image
+    :param pin:
+    :return:
+    """
     logger.info("Random picture button pressed")
     if not TimerControl.running_display:
         TimerControl.running_display = True
@@ -43,6 +53,11 @@ def random_pic(pin):
 
 @nav.on(nav.TIMER)
 def timer_on_off(pin):
+    """
+    This function turns the timer on and off
+    :param pin:
+    :return:
+    """
     logger.info("Timer button pressed")
     TimerControl.timer_flip()
     logger.info(f"Timer on switched to: {TimerControl.timer_on}")
@@ -50,6 +65,11 @@ def timer_on_off(pin):
 
 @nav.on(nav.SHUTDOWN)
 def shutdown_pi(pin):
+    """
+    This function shuts down the pi
+    :param pin:
+    :return:
+    """
     logger.info("Shutdown button pressed")
     os.system("sudo shutdown now")
     logger.info("Shutting down")
